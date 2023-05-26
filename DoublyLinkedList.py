@@ -138,7 +138,7 @@ if __name__ == "__main__":
         print("Enter 3 to insert a value")
         print("Enter 4 to delete a value")
         print("Enter 5 to return the tail")
-        print("Enter 6 to return the head")
+        print("Enter 6 to returh the head")
         print("Enter 7 to return the size")
         print("------------------------------")
         answer = int(input("Enter your choice: "))
