@@ -1,5 +1,8 @@
 #include <iostream>
 #include <cstdlib>
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 using namespace std;
 
 int* insertionSort(int arr[], int size){ //O(N^2)

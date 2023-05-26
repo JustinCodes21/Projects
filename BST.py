@@ -3,11 +3,11 @@ class Node:
         self.data = data
         self.left = left
         self.right = right
-        self.parent = None
 
 class BST:
     def __init__(self):
         self.root = None
+        self.numOfNodes = 0
 
     def findMax(self): #O(N)
         if self.root is None:
@@ -30,62 +30,92 @@ class BST:
             curr = curr.left
         return curr.data
     
+        
     def insert(self, data, node): #O(logN)
-        if self.root is None:
+        if self.isEmpty():
             self.root = Node(data)
+            self.numOfNodes += 1
             return
         
         if data < node.data:
             if node.left is None:
                 node.left = Node(data)
-                node.left.parent = node #set parent - helps with delete function
+                self.numOfNodes += 1
             else:
-                self.insert(data, node.left)
+                return self.insert(data, node.left)
         elif data > node.data:
             if node.right is None:
                 node.right = Node(data)
-                node.right.parent = node #set parent - helps with delete function
+                self.numOfNodes += 1
             else:
-                self.insert(data, node.right)
+                return self.insert(data, node.right)
         else:
             return
-            
+               
 
-    def delete(self, data, node): #O(logN) //Need to work on
-        if self.root is None:
-            return None
+    def delete(self, data, node): #O(logN) 
+        if self.isEmpty():
+            return node
         
-        if data < node.data:
+        if data == node.data:
+            #Case 1: leaf node
+            if node.left is None and node.right is None:
+                node = None
+                return
+        elif data < node.data:
             node.left = self.delete(data, node.left)
+            return node
         elif data > node.data:
             node.right = self.delete(data, node.right)
-        elif data == node.data:
-            if node.left and node.right is None:
-                return None
-            if not node.right:
-                return node.left
-            if not node.left:
-                return node.right
-            tempVal = node.right
-            miniVal = tempVal.data
-            while tempVal.left:
-                 tempVal = tempVal.left
-                 miniVal = tempVal.data
+            return node
+
+
+    def findSuccessor(self, data, node): #O(logN)
+        if not self.find(data, node):
+            return "not in BST."
+        
+        if data == self.root.data:
+            return "not in BST."
+        
+        if data == node.data:
+            if node.left:
+                return node.left.data
+            elif node.right:
+                return node.right.data
+            elif node.data == self.findMax():
+                return "not in BST."
+            else:
+                if self.root.right:
+                    return self.root.right.data
+                else:
+                    return "not in BST."
+        elif data < node.data:
+            return self.findSuccessor(data, node.left)
+        elif data > node.data:
+            return self.findSuccessor(data, node.right)
+        
+        
+    def findPredecessor(self, data, node): #O(logN)
+        if not self.find(data, node):
+            return "not in BST."
+        
+        if data == self.root.data:
+            return "not in BST."
+        
+        curr = node
+        while curr:
+            if data < curr.data:
+                predecessor = curr
+                curr = curr.left
+            elif data > curr.data:
+                predecessor = curr
+                curr = curr.right
+            elif data == curr.data:
+                return predecessor.data
             
-            node.right = self.delete(node.right, node.data)
+        return "not in BST."
 
-        return node
-
-        
-
-    def findSuccesor(self, data, node):
-        pass
-
-    def findPredecessor(self):
-        pass
-        
-    
-        
+            
     def find(self, data, node): #O(logN)
         if self.root is None:
             return False
@@ -99,53 +129,24 @@ class BST:
         else:
             return False
         
-    def deleteValue(self, value):
-        return self.deleteNode(self.find(value))
+    def isEmpty(self): #O(1)
+        if self.size() == 0:
+            return True
+        
+        return False
     
-    def deleteNode(self, node):
-        #returns the node with min value in tree rooted at input node
-        def minValueNode(n):
-            curr = n
-            while curr.left != None:
-                curr = curr.left
-            return curr
+    def size(self): #O(1)
+        return self.numOfNodes
+    
 
-        #returns the number of children for the specified node
-        def numChildren(n):
-            numChildren = 0
-            if n.left != None:
-                numChildren+=1
-            if n.right != None:
-                numChildren+=1
-            return numChildren
+    def printPreOrder(self, node): #Recursive method
+        if node is not None:
+            print(node.data, " ",end="")
+            self.printPreOrder(node.left)
+            self.printPreOrder(node.right)
 
-        #get the parent of the node to be deleted
-        nodeParent = node.parent
-
-        #get the number of children of the node to be deleted
-        nodeChildren = numChildren(node)
-
-        #break operation into different cases based on the 
-        #structure of the tree & node to be deleted
-
-        #CASE 1 (node has no children)
-        if nodeChildren == 0:
-            #remove reference to the node from the parent
-            if nodeParent.left == node:
-                nodeParent.left = None
-            else:
-                nodeParent.right = None
+    
             
-
-    def printPreOrder(self, root):
-        if root is not None:
-            print(root.data, " ",end="")
-            self.printPreOrder(root.left)
-            self.printPreOrder(root.right)
-        
-        
-
-
 myObj = BST()
 
 
@@ -156,21 +157,24 @@ while(True):
     print("Enter 3: Return root")
     print("Enter 4: Return max node")
     print("Enter 5: Return min node")
-    print("Enter 6: Print BST")
+    print("Enter 6: Find succesor")
+    print("Enter 7: Print BST (preorder)")
+    print("Enter 8: Return number of nodes")
+    print("Enter 9: Check if empty")
+    print("Enter 10: Find predecessor")
     print("--------------------------")
 
     answer = int(input("Enter answer: "))
     if answer == 1:
-        data = input("Enter data: ")
-        myObj.insert(data, myObj.root)
+        data = int(input("Enter data: "))
         print("\nPreorder traversal: ", end="")
+        myObj.insert(data, myObj.root)
         myObj.printPreOrder(myObj.root)
     elif answer == 2:
-        data = input("Enter data: ")
-        print("")
-        result = myObj.delete(data, myObj.root)
-        print("\nPreorder traversal: ", end="")
-        myObj.printPreOrder(result)
+        data = int(input("Enter data: "))
+        root = myObj.delete(data, myObj.root)
+        print("Updated BST: ", end="")
+        myObj.printPreOrder(root)
     elif answer == 3:
         print("\nThe root of the BST: ", myObj.returnRoot())
     elif answer == 4:
@@ -178,9 +182,23 @@ while(True):
     elif answer == 5:
         print("\nThe min node: ", myObj.findMin())  
     elif answer == 6:
+        data = int(input("Enter data: "))
+        print("The succesor of", data, "is", myObj.findSuccessor(data, myObj.root))
+    elif answer == 7:
         print("")
         print("Preorder traversal: ", end="")
         myObj.printPreOrder(myObj.root)
+    elif answer == 8:
+        print("The number of nodes:", myObj.size())
+    elif answer == 9:
+        result = myObj.isEmpty()
+        if result is True:
+            print("The BST is empty")
+        else:
+            print("The BST is not empty")
+    elif answer == 10:
+        data = int(input("Enter data: "))
+        print("The predecessor of", data, "is", myObj.findPredecessor(data, myObj.root))
     else:
         print("Error input")
         continue
