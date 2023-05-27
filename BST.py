@@ -51,23 +51,49 @@ class BST:
                 return self.insert(data, node.right)
         else:
             return
+        
+    def findMinNode(self, node): #Utility function for delete
+        curr = node
+        while curr.left is not None:
+            curr = curr.left
+        
+        return curr
                
 
     def delete(self, data, node): #O(logN) 
         if self.isEmpty():
+            print("\nThe BST is empty.")
             return node
         
-        if data == node.data:
-            #Case 1: leaf node
-            if node.left is None and node.right is None:
-                node = None
-                return
-        elif data < node.data:
-            node.left = self.delete(data, node.left)
+        if not self.find(data, node):
+            print("\nData not found in BST.")
             return node
+        
+        if data < node.data:
+            node.left = self.delete(data, node.left)
         elif data > node.data:
             node.right = self.delete(data, node.right)
-            return node
+        else:
+            #case 1: has one child or leaf node
+            if node.right is None:
+                temp = node.left
+                node = None
+                self.numOfNodes-=1
+                return temp
+            elif node.left is None:
+                temp = node.right
+                node = None
+                self.numOfNodes-=1
+                return temp
+            
+            #case 2: has two children
+            temp = self.findMinNode(node.right)
+
+            node.data = temp.data
+
+            node.right = self.delete(temp.data, node.right)
+
+        return node
 
 
     def findSuccessor(self, data, node): #O(logN)
@@ -139,7 +165,7 @@ class BST:
         return self.numOfNodes
     
 
-    def printPreOrder(self, node): #Recursive method
+    def printPreOrder(self, node): 
         if node is not None:
             print(node.data, " ",end="")
             self.printPreOrder(node.left)
