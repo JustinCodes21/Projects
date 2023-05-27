@@ -1,0 +1,128 @@
+h1{
+    text-align: left;
+}
+
+.comment{
+    padding: 20px;
+    background-color: #373737;
+    border-radius: 8px;
+}
+
+.trends{
+  padding: 20px;
+  background-color:  #373737;
+  border-radius: 8px;
+  margin-left: 16px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 16px;
+}
+
+.events.post{
+  background-color: #666666;
+  border-radius: 4px;
+  box-shadow: none;
+  margin-bottom: 16px;
+}
+
+.trends.post{
+  background-color: #666666;
+  border-radius: 4px;
+  box-shadow: none;
+  margin-bottom: 16px;
+}
+
+.groups.post{
+  background-color: #666666;
+  border-radius: 1px;
+  box-shadow: none;
+  margin-bottom: 10px;
+}
+
+.gamers.post{
+  background-color: #666666;
+  border-radius: 4px;
+  box-shadow: none;
+  margin-bottom: 16px;
+}
+
+.events{
+  padding: 20px;
+  background-color: #373737;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.groups{
+  padding: 10px;
+  background-color: #373737;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.gamers{
+  padding: 20px;
+  background-color:  #373737;
+  border-radius: 8px;
+  margin-left: 16px;
+  margin-bottom: 16px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.post img{
+    float: left;
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin-top: auto;
+}
+
+.container button{
+    margin-top: 10px;
+    width: 300px;
+  }
+
+/** drop down styles below*/
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    
+  }
+  
+  .dropdown a:hover {
+    background-color: #ddd;
+    
+    }
+  
+  .show {
+    display: block;
+    
+    }
+
+  

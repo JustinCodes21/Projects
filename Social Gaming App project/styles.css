@@ -1,0 +1,173 @@
+ body {
+    background-color: black;
+    font-size:14px;
+    font-family: 'Titillium Web', sans-serif;
+    color:rgb(255, 255, 255);
+  }
+
+  /* Style the header */
+  #banner {
+    background-color: #000000;
+    background-image: url("../images/GWlogo.png");
+    background-repeat: no-repeat;
+    padding: 50px;
+  }
+
+  .nav {
+    overflow: hidden;
+    background-color: #6dcbc5;
+  }
+  
+  .nav a {
+    float: left;
+    display: block;
+    color: #000000;
+    text-align: center;
+    padding: 14px 100px;
+    text-decoration: none;
+  }
+  .nav button {
+    padding: 10px 10px;
+		width: 100px;
+		height: 45px;
+		float: right;
+		text-align: center;
+  }
+  
+  .nav a:hover {
+    background-color: #a4dfdb;
+    color: rgb(255, 255, 255);
+  }
+  
+  img {
+    display: block;
+    height: auto;
+    width: 60%;
+    margin: 10px;
+  }
+  
+  img.wrap {
+    float: left;
+  }
+  
+  button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 16px 20px;
+    color: white;
+    background-color: #b749be;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    border-radius: 8px;
+  }
+  
+  button.btn {
+    width: 20% !important;
+  }
+
+  button.btn2 {
+    width: 20% !important;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+
+  .container h1 {
+    text-align:left;
+  }
+
+  .container {
+    padding: 40px;
+    background-color: #242424;
+  }
+
+  .container::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .indexcontainer {
+    padding: 40px;
+    display: flex;
+    background-color: #242424;
+  }
+
+  .messagescontainer {
+    padding: 40px;
+    display: flex;
+    background-color: #242424;
+  }
+
+  .groupcontainer {
+    
+    padding: 40px;
+    display: grid;
+    background-color: #242424;
+  }
+
+  .groupcontainer2 {
+    flex-direction: column;
+    width: 30%;
+    padding: 40px;
+    display: grid;
+    background-color: #242424;
+  }
+
+  .box-group{
+    flex-direction: column;
+    width: 70%;
+  }
+
+  .box-group2{
+    flex-direction: column;
+    width: 30%;
+  }
+  .box-group3{
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .sub{
+    padding: 20px;
+    text-align: center;
+  }
+
+  p.tab{
+    display: inline-block;
+    margin-left: 40px;
+  }
+
+  a{
+    color:rgb(255, 255, 255);
+    font-weight: bolder;
+    text-decoration: none;
+  }
+
+  /** why is there 2 a's*/
+  .indexcontainer a{
+    color: #b749be;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    
+  }
+
+  .messages{
+    padding: 20px;
+    background-color:  #373737;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 16px;
+  }
+  
+  .gamers.post{
+    background-color: #666666;
+    border-radius: 4px;
+    box-shadow: none;
+    margin-bottom: 16px;
+  }

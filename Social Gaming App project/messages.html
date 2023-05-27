@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Messages</title>
+        <meta charset="UTF-8">
+		<link rel="stylesheet" th:href="@{/css/styles.css}" href="../css/styles.css"> 
+		<link rel="stylesheet" th:href="@{/css/event.css}" href="../css/event.css">
+		<link rel="stylesheet" th:href="@{/css/profile.css}" href="../css/profile.css">
+
+	</head>
+
+	<body>
+		<a th:href="@{/index}"><div id="banner"></div></a>
+		<header>
+            <div class="nav">
+                <a th:href="@{/index}">Home</a>
+                <a th:href="@{/messages}">Messages</a>
+                <a th:href="@{/profile}">Profile</a>
+				<form th:action="@{/logout}" method="post">
+					<button type = "submit"> Logout</button>
+				  </form>
+              </div>
+		</header>
+
+        <div class = "messagescontainer">
+			
+	<div class="box-group3"> 		
+		<!-- Friends -->
+		<div class="gamers">
+			<h1><a th:href="@{/gamers}">Friends</a></h1>
+				<tr th:each="gamer, iterStat : ${gamers}" th:if="${iterStat.index} lt 100" >
+					<div class = "gamers post">
+					<h2><a th:href="@{/messages/user/{uid}(uid=${gamer.getUserID()})}"><span th:text="${gamer.profile.username}"></span></a></h2>
+					<a th:href="@{/user/block/{user} (user = ${gamer.getUserID()})}"><button style="width: 100px; margin-left: 10px;" class="joingroup">Block</button></a>
+					<a th:href="@{/user/remove/{user} (user = ${gamer.getUserID()})}"><button style="width: 100px; margin-left: 10px;" class="joingroup">Remove Friend</button></a>
+					</div>
+				</tr>
+		</div>
+
+		<!-- Groups -->
+		<div class="gamers">
+			<h1><a th:href="@{/gamers}">Groups</a></h1>
+			<tr th:each="group, iterStat : ${groups}" th:if="${iterStat.index} lt 100">
+			<div class = "gamers post">
+			<h2><a th:href="@{/messages/group/{gid}(gid=${group.groupID})}"><span th:text="${group.name}"></span></a></h2>
+			</div>
+		</div>
+		</tr>
+	</div>
+    </div>
+
+
+
+		<footer>
+			<!--Copyright information-->
+			<br>
+			<p class="whitetext">&copy; 2023 All rights reserved</p>
+		  </footer>
+
+	</body>
+</html>

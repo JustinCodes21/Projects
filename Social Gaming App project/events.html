@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Events</title>
+        <meta charset="UTF-8">
+		<link rel="stylesheet" th:href="@{/css/styles.css}" href="../css/styles.css"> 
+		<script src="/js/event.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+		<style>
+			.accordion {
+			  cursor: pointer;
+			  width: 100%;
+			  text-align: left;
+			  outline: none;
+			  font-size: 15px;
+			  transition: 0.4s;
+			}
+
+			.rsvpevent {
+				padding: 10px 10px;
+				bottom: 0;
+				right: 0;
+				width: 100px;
+				height: 40px;
+			}
+			
+			.active, .accordion:hover {
+			  background-color: #706f6f !important; 
+			}
+			
+			.panel {
+			  border: 5px solid #1c4f52;
+    		  color: white;
+    		  padding: 5px 60px;
+    		  background-color:black;
+			  display: none;
+			  overflow: hidden;
+			}
+
+			.search {
+				padding: 10px 10px;
+				float: left;
+				border: none;
+				margin-top: 10px;
+				margin-right: 16px;
+				font-size: 17px;
+			}
+
+			button {
+				font-size: 17px;
+				padding: 10px;
+			}
+
+			input[type=text] {
+				font-size: 20px;
+			}
+			</style>
+	</head>
+
+	<body>
+		<a th:href="@{/index}"><div id="banner"></div></a>
+		<header>
+            <div class="nav">
+                <a th:href="@{/index}">Home</a>
+				<a th:href="@{/messages}">Messages</a>
+                <a th:href="@{/profile}">Profile</a>
+				<form th:action="@{/logout}" method="post">
+					<button type = "submit"> Logout</button>
+				  </form>
+              </div>
+		</header>
+
+        <div class = "container">
+			<p><a th:href="@{event/newEvent/}"><button class="btn">Create Event</button></p></a>
+			<h1>Events</h1>
+
+            <div class="search">
+                <form action="#" th:action="@{/events}" method="post">
+                    <div style="display: flex">
+                        <input type="text" placeholder="Filter Events" name="filter">
+                        <button type="submit" >Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <tr th:each="event : ${events}">
+                <button class="accordion" id="eventborder" style="font-size: large; font-weight: bold"><u><a th:href="@{/event/{eventId}(eventId=${event.eventId})}"><span th:text="${event.eventName}"></span> | <span th:text="${event.date}"></span> | <span th:text="${event.location}"></span></a></u></button>
+                <div class="panel">
+                    <p><span th:text="${event.description}"></span></p>
+					<p>Game: <span th:text="${event.game}"></span></p>
+					<p>Play Level: <span th:text="${event.playLevel}"></span></p>
+					<button class="btn" th:if="${!#lists.contains(event.attendeeList, user)}" th:id="${event.eventId}" th:value="${event.eventId}" onclick="rsvp(this.value)">RSVP</button>
+                	<button class="btn" th:unless="${!#lists.contains(event.attendeeList, user)}" style="background-color: #712277">Attending</button>
+                </div>
+            </tr>
+
+        </div>
+
+		<script src="js/index.js"></script>
+
+		<footer>
+			<!--Copyright information-->
+			<br>
+			<p class="whitetext">&copy; 2023 All rights reserved</p>
+		  </footer>
+
+	</body>
+</html>

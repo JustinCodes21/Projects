@@ -1,0 +1,59 @@
+.profile {
+    /*width: 350px;
+    width:450px;
+    height: 600px;*/
+    padding: 10px;
+    margin: auto;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Titillium Web', sans-serif;
+    background-color: #373737;
+  }
+
+  .profile h1 {
+    text-align: center;
+  }
+
+  .profile button{
+    margin-top: 10px;
+    width: 300px;
+  }
+
+  img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .column {
+    float: left;
+    width: 30%;
+    padding: 15px;
+  }
+
+
+
+  @media screen and (max-width: 600px){
+    .profile{
+      width: 90%;
+      height: auto;
+    }
+
+    .column{
+      width:100%;
+    }
+
+    .profile button{
+      width: 90%;
+    }
+  }
+  
+
+  
