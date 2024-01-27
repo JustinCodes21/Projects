@@ -1,6 +1,13 @@
 {
     "configurations": [
         {
+            "type": "java",
+            "name": "GuessStatisticsMessage",
+            "request": "launch",
+            "mainClass": "GuessStatisticsMessage",
+            "projectName": "Project-portfolio_ee887924"
+        },
+        {
             "name": "C/C++: g++.exe build and debug active file",
             "type": "cppdbg",
             "request": "launch",

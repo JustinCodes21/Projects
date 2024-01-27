@@ -88,9 +88,7 @@ class BST:
             
             #case 2: has two children
             temp = self.findMinNode(node.right)
-
             node.data = temp.data
-
             node.right = self.delete(temp.data, node.right)
 
         return node
@@ -155,6 +153,24 @@ class BST:
         else:
             return False
         
+    def getHeight(self, node):
+        if self.isEmpty():
+            return 0
+        elif self.size() == 1:
+            return 1
+        
+    def getLeafNodes(self, node):
+        if self.isEmpty():
+            return "Empty BST"
+        if self.size() == 1:
+            return self.root.data
+        
+        curr = node.left
+
+    
+
+
+        
     def isEmpty(self): #O(1)
         if self.size() == 0:
             return True
@@ -188,6 +204,7 @@ while(True):
     print("Enter 8: Return number of nodes")
     print("Enter 9: Check if empty")
     print("Enter 10: Find predecessor")
+    print("Enter 11: Find height of the BST")
     print("--------------------------")
 
     answer = int(input("Enter answer: "))
